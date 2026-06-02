@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧱 LEGO Injury Report | Official Survivor Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="progress-bar" style="width: 0%;"></div>
+    <canvas id="confetti-canvas"></canvas>
+    <div id="toast"></div>
+
+    <div id="loading-overlay">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: #ffcc00; letter-spacing: 4px;">LEGO INJURY REPORT</div>
+        <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+        <div class="loading-text" id="loading-msg">Scattering bricks on the floor...</div>
+    </div>
+
+
+    <!-- SCREEN 1 -->
+    <div id="screen-intro" class="screen">
+        <div id="intro-bg"></div>
+        <div id="intro-content">
+            <div id="intro-badge">OFFICIAL<br>SURVIVOR<br>DOCUMENT<br>™</div>
+            <div id="intro-logo" onclick="goToSetup()">YOU STEPPED<br>ON A<br>LEGO</div>
+            <div id="intro-tagline">😱 We are so sorry. (Not really.)</div>
+            <p id="intro-desc">It happened. You stepped on a LEGO brick.<br>Fill out the <strong>Official injury report</strong>, survive the <strong>waiting room</strong>, and collect your <strong>Survivor Certificate</strong>.</p>
+            <button id="intro-cta" onclick="goToSetup()">START MY REPORT →</button>
+            <div id="intro-credits">a completely useless but legally binding document</div>
+            <div id="intro-hall-link" onclick="goToHall()">🏆 View Hall of Shame →</div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2 -->
+    <div id="screen-setup" class="screen">
+        <div class="page-header" id="setup-header">
+            <div style="font-size: 24px;">🧱</div>
+            <h1>TELL US ABOUT YOUR INJURY</h1>
+        </div>
+
+        <div class="setup-form">
+            <div class="form-section">
+                <h2>👤 Who Are You?</h2>
+                <label for="" class="form-label">Your name (will appear on your certificate!)</label>
+                <input type="text" placeholder="e.g. Pep Guardiola" maxlength="40" class="form-input" id="vic-name">
+            </div>
+
+            <div class="form-section">
+                <h2>🧱 What Brick Was It</h2>
+                <p style="font-size: 11px; color: #888; margin-bottom: 12px;">Pick the brick. The pain level updates in real time.</p>
+                <div class="brick-grid" id="brick-grid">
+                    <div class="brick-card" data-brick="Classic 2x4 Red Brick" data-pain="72" data-emoji="🔴" onclick="selectBrick(this)">
+                        <span class="bc-emoji">🔴</span>
+                        <div class="bc-name">Classic 2x4</div>
+                        <div class="bc-desc">The original. Always guilty.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Tiny 1x1 Transparent Plate" data-pain="99" data-emoji="🔬" onclick="selectBrick(this)">
+                        <span class="bc-emoji">🔬</span>
+                        <div class="bc-name">Tiny 1x1 Plate</div>
+                        <div class="bc-desc">Invisible. Unstoppable. Pure evil.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Gray Technic Connector" data-pain="95" data-emoji="⚙️" onclick="selectBrick(this)">
+                        <span class="bc-emoji">⚙️</span>
+                        <div class="bc-name">Technic Connector</div>
+                        <div class="bc-desc">4 studs pointing up. Maximum pain.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Giant Duplo Brick" data-pain="28" data-emoji="🟦" onclick="selectBrick(this)">
+                        <span class="bc-emoji">🟦</span>
+                        <div class="bc-name">Duplo (Big Brick)</div>
+                        <div class="bc-desc">Barely counts. Still counts.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Sharp Technic Axle" data-pain="88" data-emoji="📌" onclick="selectBrick(this)">
+                        <span class="bc-emoji">📌</span>
+                        <div class="bc-name">Technic Axle</div>
+                        <div class="bc-desc">Pointy. Merciless. A war crime.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Unknown Brick (it was dark)" data-pain="80" data-emoji="🌑" onclick="selectBrick(this)">
+                        <span class="bc-emoji">🌑</span>
+                        <div class="bc-name">Unknown Brick</div>
+                        <div class="bc-desc">3AM. Total Darkness. You saw nothing.</div>
+                    </div>
+                    <div class="brick-card" data-brick="Multiple Bricks in Ambush Formation" data-pain="100" data-emoji="💥" onclick="selectBrick(this)">
+                        <span class="bc-emoji">💥</span>
+                        <div class="bc-name">Multiple Bricks</div>
+                        <div class="bc-desc">Someone planned this ambush.</div>
+                    </div>
+                    <div class="brick-card" data-brick="LEGO Wheel (rolling hazard)" data-pain="60" data-emoji="🚗" onclick="selectBrick(this)">
+                        <span class="bc-emoji">🚗</span>
+                        <div class="bc-name">LEGO Wheel</div>
+                        <div class="bc-desc">It rolled under your foot. Sneaky.</div>
+                    </div>
+                </div>
+            </div>
+            <div id="pain-review" class="form-section">
+                <div id="pain-review-label">PAIN LEVEL - SELF REPORTED</div>
+                <div id="pain-track"><div id="pain-fill"></div></div>
+                <div id="pain-emoji"></div>
+                <div id="pain-verdict"></div>
+            </div>
+            <div class="form-section">
+                <h2>🌙 When Did It Happen?</h2>
+                <div class="choice-grid" id="time-grid">
+                    <div class="choice-card" data-time="3:17 AM - Night Toilet Run" onclick="selectTime(this)">
+                        <span class="card-emoji">🌙</span>
+                        <div class="card-name">3AM - Toilet Run</div>
+                        <div class="card-desc">The classic. The worst time.</div>
+                    </div>
+                    <div class="choice-card" data-time="2AM - Midnight snack mission" onclick="selectTime(this)">
+                        <span class="card-emoji">🍪</span>
+                        <div class="card-name">2AM - Snack Run</div>
+                        <div class="card-desc">Hunger cost you dearly.</div>
+                    </div>
+                    <div class="choice-card" data-time="Sunday Morning (peak suffering hours)" onclick="selectTime(this)">
+                        <span class="card-emoji">☀️</span>
+                        <div class="card-name">Sunday Morning</div>
+                        <div class="card-desc">Peaceful walk. Ruined.</div>
+                    </div>
+                    <div class="choice-card" data-time="Broad daylight (no excuse)" onclick="selectTime(this)">
+                        <span class="card-emoji">😳</span>
+                        <div class="card-name">Broad Daylight</div>
+                        <div class="card-desc">No excuse. We're disappointed.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h2>🦶 Were You Wearing Socks?</h2>
+                <div class="eq-row" id="sock-row">
+                    <div class="eq-chip" data-sock="Barefoot (no protection whatsoever)" onclick="selectChip(this, 'sock-row')">Barefoot 😱</div>
+                    <div class="eq-chip" data-sock="Thin socks (basically barefoot)" onclick="selectChip(this, 'sock-row')">Thin socks</div>
+                    <div class="eq-chip" data-sock="Thick socks (still not enough)" onclick="selectChip(this, 'sock-row')">Thick socks</div>
+                    <div class="eq-chip" data-sock="Slippers (a false sense of safety)" onclick="selectChip(this, 'sock-row')">Slippers</div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>🕵️ Who Left The Brick There?</h2>
+                <div class="eq-row" id="blame-row">
+                    <div class="eq-chip" data-blame="My child (deliberate sabotage)" onclick="selectChip(this, 'blame-row')">My child</div>
+                    <div class="eq-chip" data-blame="Myself (I was building and forget)" onclick="selectChip(this, 'blame-row')">Myself</div>
+                    <div class="eq-chip" data-blame="Unknown party (materialized from nowhere)" onclick="selectChip(this, 'blame-row')">Unknown</div>
+                    <div class="eq-chip" data-blame="The LEGO Group, Billund, Denmark" onclick="selectChip(this, 'blame-row')">LEGO HQ</div>
+                    <div class="eq-chip" data-blame="The cat (the evidence points to the cat)" onclick="selectChip(this, 'blame-row')">The cat</div>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="btn-next-setup" onclick="goToCrimeScene()" disabled>NEXT: CRIME SCENE PHOTO →</button>
+        </div>
+    </div>
+
+     <!-- SCREEN 3 -->
+    <div id="screen-crime" class="screen">
+        <div class="page-header" id="crime-header">
+            <div style="font-size:22px;">🔦</div>
+            <h1>CRIME SCENE INVESTIGATION</h1>
+        </div>
+        <div id="crime-body">
+            <div id="crime-tape">⚠️ CRIME SCENE - DO NOT CROSS - LEGO HAZARD ZONE - DO NOT CROSS ⚠️</div>
+            <div id="crime-photo-area">
+                <div id="crime-photo-label">EXHIBIT A - PHOTO EVIDENCE</div>
+                <div id="crime-photo-num">CASE FILE / PHOTO 1 OF 1</div>
+                <div id="crime-svg-wrap"></div>
+            </div>
+            <div id="crime-notes">
+                <div id="crime-notes-text" class="typing-cursor"></div>
+            </div>
+            <button class="btn-yellow" onclick="goToReportForm()">📋 NEXT: FILL THE OFFICIAL REPORT →</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4 -->
+    <div id="screen-report" class="screen">
+        <div class="page-header" id="report-header">
+            <div style="font-size: 22px;">📋</div>
+            <h1>OFFICIAL INJURY REPORT</h1>
+            <span>FORM INJ-LEGO-9001-B</span>
+        </div>
+        <div class="report-wrap">
+            <div id="official-form">
+                <div id="form-titlebar">
+                    <span>BRICKLAND NATIONAL HEALTH SERVICE - LEGO INCIDENT DECLARATION</span>
+                    <span style="font-size: 10px; color: #ffcc0088;">TOP SECRET / VERY PAINFUL</span>
+                </div>
+                <div class="f-section">
+                    <div class="f-section-title">Section A - Victim Information</div>
+                    <div class="f-grid">
+                        <div class="f-field">
+                            <label for="">Full Name</label>
+                            <div class="f-field-value" id="fi-name"></div>
+                        </div>
+                        <div class="f-field">
+                            <label for="">Date of Incident</label>
+                            <div class="f-field-value" id="fi-date"></div>
+                        </div>
+                        <div class="f-field">
+                            <label for="">Brick Involved</label>
+                            <div class="f-field-value" id="fi-brick"></div>
+                        </div>
+                        <div class="f-field">
+                            <label for="">Case Number</label>
+                            <div class="f-field-value" id="fi-case"></div>
+                        </div>
+                        <div class="f-field">
+                            <label for="">Footwear at Time</label>
+                            <div class="f-field-value" id="fi-sock"></div>
+                        </div>
+                        <div class="f-field">
+                            <label for="">Suspected Perpetrator</label>
+                            <div class="f-field-value" id="fi-blame"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-section">
+                    <div class="f-section-title">Section B - Location & Circumstances</div>
+                    <div class="f-check-group">
+                        <label for="" class="f-check"><input type="checkbox" id="loc-bedroom"> Bedroom floor</label>
+                        <label for="" class="f-check"><input type="checkbox" id="loc-hall"> Hallway to bathroom</label>
+                        <label for="" class="f-check"><input type="checkbox" id="loc-kitchen"> Kitchen (3AM)</label>
+                        <label for="" class="f-check"><input type="checkbox" id="loc-playroom"> Child's playroom</label>
+                        <label for="" class="f-check"><input type="checkbox" id="loc-dark"> Completely dark room</label>
+                        <label for="" class="f-check"><input type="checkbox" id="loc-stairs"> Bottom of stairs</label>
+                    </div>
+                    <div class="f-field" style="margin-top: 12px;">
+                        <label for="">Official Statement (your version of events)</label>
+                        <textarea name="" id="fi-story" class="f-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="f-section">
+                    <div class="f-section-title">Section C - Medical Assessment</div>
+                    <div class="f-grid">
+                        <div class="f-field"><label for="">Official Diagnosis</label><div class="f-field-value" id="fi-diagnosis"></div></div>
+                        <div class="f-field"><label for="">ICD Code</label><div class="f-field-value" id="fi-icd"></div></div>
+                    </div>
+                    <div class="f-field" style="margin-top: 10px;"><label for="">Treatment Prescription</label><div class="f-field-value" id="fi-treatment" style="min-height: 36px; line-height: 1.6;"></div></div>
+                    <div class="f-field" style="margin-top: 10px;">
+                        <label for="">Liability - Who Is Responsible?</label>
+                        <div class="f-check-group">
+                            <label for="" class="f-check"><input type="checkbox" id="bl-me"> Myself</label>
+                            <label for="" class="f-check"><input type="checkbox" id="bl-child"> My child (deliberate)</label>
+                            <label for="" class="f-check"><input type="checkbox" id="bl-lego"> LEGO Group (Denmark)</label>
+                            <label for="" class="f-check"><input type="checkbox" id="bl-gravity"> Gravity (act of nature)</label>
+                            <label for="" class="f-check"><input type="checkbox" id="bl-floor"> The floor (negligent surface)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-section">
+                    <div class="f-section-title">Section D - Damages Claimed</div>
+                    <div class="f-grid-3">
+                        <div class="f-field"><label for="">Medical Costs</label><div class="f-field-value" id="fi-cost-med"></div></div>
+                        <div class="f-field"><label for="">Emotional Damage</label><div class="f-field-value" id="fi-cost-emo"></div></div>
+                        <div class="f-field"><label for="">Lost Dignity</label><div class="f-field-value" id="fi-cost-dig"></div></div>
+                    </div>
+                </div>
+                <div class="sig-area">
+                    <div>
+                        <div class="sig-box" id="sig-box" onclick="signReport(this)"><div class="sig-text" id="sig-text"></div></div>
+                        <div class="sig-hint">CLICK TO SIGN</div>
+                    </div>
+                    <div class="sig-note">By signing, I confirm this injury was real, painful, and 100% the brick's fault.</div>
+                </div>
+            </div>
+            <button class="btn-green" id="btn-submit" onclick="goToWaiting()" disabled>📤 SUBMIT & JOIN THE WAITING ROOM</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 5 -->
+    <div id="screen-waiting" class="screen">
+        <div class="page-header" id="waiting-header">
+            <div style="font-size: 22px;">🏥</div>
+            <h1>BRICKLAND NHS - WAITING ROOM</h1>
+        </div>
+        <div id="waiting-body">
+            <div id="queue-board">
+                <div id="queue-board">
+                    <span>🔴 LIVE QUEUE - LEGO CASUALITIES</span>
+                    <span id="queue-count" style="font-size: 11px; color: #b8860b;"></span>
+                </div>
+                <div id="queue-list"></div>
+            </div>
+            <div id="you-status-box">
+                <span id="you-status-emoji">⏳</span>
+                <div id="you-status-text">PLEASE WAIT</div>
+                <div id="you-status-sub">Your case is being reviewed by a certified LEGO Pain Expert.</div>
+            </div>
+            <button id="you-turn-btn" onclick="showResults()">🎉 GET MY DOCUMENTS →</button>
+            <div id="waiting-fact"></div>
+        </div>
+    </div>
+
+     <!-- SCREEN 6 -->
+    <div id="screen-result" class="screen">
+        <div class="page-header" id="result-header">
+            <div style="font-size: 24px;">🏆</div>
+            <h1>YOUR OFFICIAL DOCUMENTS</h1>
+        </div>
+        <div id="result-body">
+            <div id="rx-pad">
+                <div id="rx-top">
+                    <h2>OFFICIAL PRESCRIPTION</h2>
+                    <div class="rx-clinic-info">
+                        <div>Brickland Medical Centre</div>
+                        <div style="font-size: 9px; opacity: 0.7;">Est. 1958 · Billund, Denmark</div>
+                        <div>License #: LEGO-<span id="rxp-license"></span></div>
+                    </div>
+                </div>
+                <div id="rx-body">
+                    <div class="rx-line"><span class="lbl">Patient:</span><span class="val" id="rxp-patient"></span></div>
+                    <div class="rx-line"><span class="lbl">Diagnosis:</span><span class="val" id="rxp-diagnosis"></span></div>
+                    <ul class="rx-items" id="rxp-items"></ul>
+                </div>
+                <div id="rx-stamp">APPROVED<br>BRICKLAND<br>NHS™<br>✓</div>
+            </div>
+            <div id="certificate">
+                <div class="cert-sub">The Brickland Academy of Foot Sciences proudly presents</div>
+                <div class="cert-title">CERTIFICATE OF<br>SURVIVAL</div>
+                <hr class="cert-divider">
+                <div class="cert-body">This is to clarify that</div>
+                <div class="cert-name" id="cert-name"></div>
+                <div class="cert-text" id="cert-body-text"></div>
+                <div class="cert-degree" id="cert-rank"></div>
+                <hr class="cert-divider">
+                <div class="cert-footer">
+                    <div class="cert-sig"><div class="cert-sig-name">Brick Stud Sr.</div><div class="cert-sig-title">Cheif Pain Officer</div></div>
+                    <div class="cert-seal">BRICKLAND<br>ACADEMY<br>🧱<br>CERTIFIED</div>
+                    <div class="cert-sig"><div class="cert-sign-name">Dr. Pain D. Foor</div><div class="cert-sig-title">Director of Suffering</div></div>
+                </div>
+            </div>
+
+            <div id="badges-panel">
+                <h3>🏅 ACHIEVEMENTS UNLOCKED</h3>
+                <div id="badges-grid"></div>
+            </div>
+            <div id="brick-id-card">
+                <div class="bic-header">
+                    <div><div class="bic-org">BRICKLAND NATIONAL REGISTRY</div><div style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--yellow);">BRICK ID CARD</div></div>
+                    <div class="bic-ship"></div>
+                </div>
+                <div class="bic-body">
+                    <div class="bic-photo" id="bic-photo"></div>
+                    <div class="bic-fields">
+                        <div class="bic-field"><div class="bic-label">Registered Name</div><div class="bic-value" id="bic-name"></div></div>
+                        <div class="bic-field"><div class="bic-label">Classification</div><div class="bic-value" id="bic-class"></div></div>
+                        <div class="bic-field"><div class="bic-label">Danger Level</div><div class="bic-value" id="bic-danger"></div></div>
+                        <div class="bic-field"><div class="bic-label">Serio No.</div><div class="bic-value" id="bic-serial"></div></div>
+                        <div class="bic-field"><div class="bic-label">Last Known Location</div><div class="bic-value" id="bic-location"></div></div>
+                    </div>
+                </div>
+                <div class="bic-barcode" id="bic-barcode"></div>
+                <div><span class="bic-status" id="bic-status">ACTIVE HAZARD</span></div>
+            </div>
+            <div class="action-row">
+                <button class="btn-dl" onclick="downloadCertificate()">⬇ DOWNLOAD</button>
+                <button class="btn-share" onclick="shareResult()">↗ SHARE</button>
+                <button class="btn-big" onclick="goToIntro()">🧱 AGAIN</button>
+            </div>
+            <button class="btn-hall" onclick="goToHall()">🏆 VIEW HALL OF SHAME →</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 7 -->
+    <div id="screen-hall" class="screen">
+        <div class="page-header" id="hall-header">
+            <div style="font-size: 26px;">🏆</div>
+            <h1>HALL OF SHAME</h1>
+        </div>
+        <div id="hall-body">
+            <div id="hall-board">
+                <h2>🧱 TOP LEGO SURVIVORS</h2>
+                <div id="hall-entries"></div>
+            </div>
+            <div id="hall-your-entry" class="hidden">
+                <div id="hall-your-entry-text"></div>
+            </div>
+            <button class="btn-restart" onclick="goToIntro()">🧱 START YOUR REPORT →</button>
+            <button class="btn-ghost" onclick="goBack()">← Back</button>
+        </div>
+    </div>
+
+    <!-- NEWS TICKER -->
+    <div id="news-ticker">
+        <div id="ticker-label">🔴 BREAKING</div>
+        <div id="ticker-track"><div id="ticker-text">Loading incident report...</div></div>
+    </div>
+
+    <!-- Achievements Bar -->
+    <div id="achievements-bar"></div>
+
+    <!-- Sound Toggle -->
+    <div id="sound-toggle" onclick="toggleSound()" title="Toggle sounds">🔊</div>
+
+    <!-- SCREEN 911 CALL -->
+    <div id="screen-911" class="screen">
+        <div class="page-header" id="s911-header">
+            <div style="font-size: 22px;">📱</div>
+            <h1>EMERGENCY CALL TRANSCRIPT</h1>
+        </div>
+        <div id="s911-body">
+            <div id="s911-phone">
+                <div id="s911-screen-top">
+                    <div style="font-size: 10px; color: #555; font-family: var(--font-mono);">BRICKLAND EMERGENCY SERVICES</div>
+                    <div style="display: flex; gap: 5px;">
+                        <div class="s911-dot" style="background: #e3000b;"></div>
+                        <div class="s911-dot" style="background: #ffcc00;"></div>
+                        <div class="s911-dot" style="background: #00a550;"></div>
+                    </div>
+                </div>
+
+                <div id="s911-call-bar">
+                    <div style="font-size: 20px;">📞</div>
+                    <div id="s911-call-num">9 - 1 - 1</div>
+                    <div id="s911-call-dur">00:00</div>
+                </div>
+                <div id="s911-transcript"></div>
+                <div id="s911-typing" style="display: none;">
+                    <span style="font-size: 10px; color: #555;">Operator is typing</span>
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div id="s911-bottom">
+                    <button class="btn-s911-next" id="s911-next-btn" onclick="go911Next()" style="display: none;">📋 NEXT: FILL THE REPORT →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN WANTED POSTER -->
+    <div id="screen-wanted" class="screen">
+        <div class="page-header" id="wanted-header">
+            <div style="font-size: 22px;">🚨</div>
+            <h1>MOST WANTED</h1>
+        </div>
+        <div id="wanted-body">
+            <div id="wanted-poster">
+                <div class="wp-title">WANTED</div>
+                <div class="wp-subtitle">Dead or Alive - Brickland Law Enforcement</div>
+                <div id="wp-mugshot">
+                    <div id="wp-mugshot-emoji"></div>
+                    <div id="wp-mugshot-ruler">HEIGHT: 9.6mm</div>
+                </div>
+                <div id="wp-name" style="font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #8b0000; margin-bottom: 4px; letter-spacing: 2px;"></div>
+                <div id="wp-aka" style="font-size: 11px; color: #888; margin-bottom: 14px; font-style: italic;"></div>
+                <div id="wp-fields"></div>
+                <div class="wp-charges">
+                    <div class="wp-charges-title">Charges</div>
+                    <div id="wp-charges-list"></div>
+                </div>
+                <div class="wp-reward">REWARD: £<span id="wp-reward-amt"></span></div>
+                <div class="wp-reward-sub">For information leading to the brick's arrest and prosecution</div>
+            </div>
+            <button class="btn-yellow" onclick="goToReport()">📋 NEXT: FILL THE REPORT →</button>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
