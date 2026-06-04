@@ -72,9 +72,9 @@ const PAIN_VERDICTS = {
 
 const STORIES = {
   "Classic 2x4 Red Brick":
-    "Victim was walking to the kitchen when a 2×4 red brick, stud-side up, was encountered dead center of the hallway floor. Victim reports seeing colours. The brick was still there in the morning.",
-  "Tiny 1×1 Transparent Plate":
-    "A transparent 1×1 plate - invisible against the floor - was encountered at 100% body weight. Victim states this is maximum pain per unit area and has requested a full investigation.",
+    "Victim was walking to the kitchen when a 2x4 red brick, stud-side up, was encountered dead center of the hallway floor. Victim reports seeing colours. The brick was still there in the morning.",
+  "Tiny 1x1 Transparent Plate":
+    "A transparent 1x1 plate - invisible against the floor - was encountered at 100% body weight. Victim states this is maximum pain per unit area and has requested a full investigation.",
   "Gray Technic Connector":
     "A Technic connector with four studs pointing vertically upward was left at the base of the stairs. Victim's heel landed at a perfect 90° angle. Victim reports a sound they cannot unhear.",
   "Giant Duplo Brick":
@@ -107,7 +107,7 @@ const QUEUE_PATIENTS = [
 const WAIT_FACTS = [
     "The average LEGO brick can support 4,240 Newtons of force before breaking. Your foot could not.",
     "There are approximately 80 LEGO bricks for every person on Earth. They are winning.",
-    "The 1×1 round plate is scientifically the most painful LEGO element. You know this now.",
+    "The 1x1 round plate is scientifically the most painful LEGO element. You know this now.",
     "LEGO produces around 306 million tiny tires per year. Every single one is a threat.",
     "LEGO bricks are made to a tolerance of 0.002mm. They are more precise than your hospital.",
     "In 2015, a British man ran a half-marathon barefoot on LEGO bricks. He is considered legally insane.",
@@ -148,8 +148,8 @@ const BRICK_CHARGES = {
 }
 
 const BRICK_DANGER = {
-    'Classic 2×4 Red Brick': 'HIGH ⚠️',
-    'Tiny 1×1 Transparent Plate': 'EXTREME ☠️',
+    'Classic 2x4 Red Brick': 'HIGH ⚠️',
+    'Tiny 1x1 Transparent Plate': 'EXTREME ☠️',
     'Gray Technic Connector': 'CRITICAL ☠️',
     'Giant Duplo Brick': 'LOW (Embarrassing)',
     'Sharp Technic Axle': 'SEVERE ⚠️',
