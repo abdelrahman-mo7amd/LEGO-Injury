@@ -1,0 +1,40 @@
+:root {
+    --red: #e3000b;
+    --darkred: #8b0000;
+    --yellow: #ffcc00;
+    --darkyellow: #b8860b;
+    --blue: #0055a5;
+    --darkblue: #003377;
+    --green: #00a550;
+    --darkgreen: #006633;
+    --white: #f5f0e8;
+    --offwhite: #ede8da;
+    --cream: #faf6ee;
+    --dark: #1a0a0a;
+    --dark2: #2a1515;
+    --dark3: #3a2020;
+    --gray: #888;
+    --paper: #fef9f0;
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --font-marker: 'Permanent Marker', cursive;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body{ 
+    background: var(--dark);
+    font-family: var(--font-mono);
+    color: var(--white);
+    overflow: hidden;
+}
