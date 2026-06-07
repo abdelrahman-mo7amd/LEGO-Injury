@@ -158,6 +158,19 @@ const BRICK_DANGER = {
     'LEGO Wheel (rolling hazard)': 'MODERATE ⚠️'
 };
 
+const ALL_BADGES = [
+  { id: 'first_step', emoji: '🩸', name: 'First Blood',   desc: 'Complete your first injury report',  cond: () => true },
+  { id: 'three_am', emoji: '🌙', name: '3AM Warrior',desc: 'Stepped on a brick at 3AM',cond: () => state.time && state.time.includes('3:17') },
+  { id: 'barefoot', emoji: '👣', name: 'No Protection',desc: 'Was completely barefoot',cond: () => state.sock && state.sock.includes('Barefoot') },
+  { id: 'technic', emoji: '⚙️', name: 'Technic Survivor',desc: 'Survived a Technic Connector',cond: () => state.brick && state.brick.includes('Technic') },
+  { id: 'max_pain', emoji: '💀', name: 'Maximum Suffering',  desc: 'Brick pain level reached 95+',cond: () => state.brickPain >= 95 },
+  { id: 'ambush', emoji: '💥', name: 'Ambush Victim',desc: 'Stepped on multiple bricks',cond: () => state.brick && state.brick.includes('Ambush') },
+  { id: 'invisible',emoji: '🔬', name: 'Found The Invisible', desc: 'Stepped on a transparent 1x1',cond: () => state.brick && state.brick.includes('1×1') },
+  { id: 'blame_cat', emoji: '🐱', name: 'Cat Conspiracy',desc: 'Blamed the cat',cond: () => state.blame && state.blame.includes('cat') },
+  { id: 'blame_lego',emoji: '⚖️', name: 'Going To Court',desc: 'Blamed LEGO Group HQ',cond: () => state.blame && state.blame.includes('LEGO Group') },
+  { id: 'duplo', emoji: '🟦', name: 'Duplo Disgrace',desc: 'Stepped on a Duplo brick (really?)', cond: () => state.brick && state.brick.includes('Duplo') }
+];
+
 const CALL_SCRIPT = [
     { role: 'operator', text: 'Brickland Emergency Services, what is your emergency?' },
     { role: 'caller', text: () => `I stepped on a LEGO brick. ${state.brick || 'A brick'}. Please send me help.`},
