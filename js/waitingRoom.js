@@ -74,7 +74,7 @@ function startWaitingAnimation() {
     waitTimer = setTimeout(next, 1000);
 }
 
-function youTurn() {
+function yourTurn() {
     const youIdx = QUEUE_PATIENTS.length;
     const item = document.getElementById('qi-' + youIdx);
 
