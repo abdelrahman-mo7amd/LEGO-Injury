@@ -1,5 +1,15 @@
 function selectBrick(el) {
-    document.querySelectorAll('#brick-grid .brick-grid').forEach(c => c.classList.remove('selected'));
+    if (el.classList.contains('selected')) {
+        el.classList.remove('selected');
+        state.brick = '';
+        state.brickPain = 0;
+        state.brickEmoji = '🧱';
+        resetPainMeter();
+        checkSetupReady();
+        return;
+    }
+
+    document.querySelectorAll('#brick-grid .brick-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     state.brick = el.dataset.brick;
     state.brickPain = parseInt(el.dataset.pain);
