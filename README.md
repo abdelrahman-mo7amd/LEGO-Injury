@@ -122,7 +122,7 @@ lego-injury-report/
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 Built entirely with **vanilla everything**. No frameworks were harmed in the making of this project.
 
@@ -139,7 +139,7 @@ Built entirely with **vanilla everything**. No frameworks were harmed in the mak
 
 
 
-## 🤝 Contributing
+## Contributing
 
 Found a bug? Want to add a new brick? Want to make Abdelrahman's pain score even higher? PRs are welcome.
 
@@ -184,7 +184,7 @@ of this software to step on it barefoot at 3AM and file a report about it.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - **LEGO Group, Billund, Denmark**: for creating the most painful flooring accessory in human history. We owe you everything. We are also suing you.
 - **The 1×1 Transparent Plate**: for proving that the most dangerous things in life are the ones you can't see.
