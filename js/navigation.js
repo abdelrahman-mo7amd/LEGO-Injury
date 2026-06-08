@@ -67,7 +67,7 @@ function goToWaiting() {
 }
 
 function showResults() {
-    fillResultsDocs();
+    fillResultDocs();
     buildBadgesPanel();
     buildBrickIdCard();
     addToHall();
