@@ -17,6 +17,12 @@
 
 ---
 
+## AI declaration
+
+i have used AI for giving me the idea, solving some logic problems in JS, like certificate generating, and also for generating the README banner above.
+
+---
+
 > *"I stepped on a LEGO at 3AM. I needed closure. I built an enitre wep app instead of going back to sleep. No regrets."*
 > --> The developer, probably.
 
