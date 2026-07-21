@@ -10,6 +10,12 @@ So instead of sleeping, I spent way too much time making this.
 
 Its just a funny web app where you go through the whole process of reporting your "LEGO injury". Nothing here is serious.
 
+
+---
+## AI Declarition 
+I have used AI to give me the idea, and to solve some logical errors in JS, and also to give me the color palette, and finally to generate the banner of the readme
+
+---
 ## What is this?
 
 This project is a small web app made with HTML, CSS and JavaScript.
